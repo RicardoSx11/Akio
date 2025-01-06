@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bienvenida Animada</title>
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+      font-family: 'Arial', sans-serif;
+      background: linear-gradient(135deg, black, purple, red);
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+    }
+
+    .character-container {
+      position: absolute;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      animation: moveCharacter 10s linear infinite alternate;
+    }
+
+    @keyframes moveCharacter {
+      0% {
+        transform: translateX(10%);
+      }
+      100% {
+        transform: translateX(80%);
+      }
+    }
+
+    .character {
+      width: 100px;
+      height: 100px;
+      background: url('https://via.placeholder.com/100') no-repeat center center / cover;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-shadow: 0px 0px 20px rgba(255, 0, 0, 0.8);
+      position: relative;
+    }
+
+    .bubble {
+      position: absolute;
+      bottom: 120%;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(0, 0, 0, 0.8);
+      color: white;
+      padding: 10px 15px;
+      border-radius: 10px;
+      box-shadow: 0px 0px 10px rgba(255, 0, 0, 0.8);
+      white-space: nowrap;
+      font-size: 1rem;
+      text-align: center;
+    }
+
+    .sections {
+      position: fixed;
+      bottom: 20px;
+      width: 100%;
+      display: flex;
+      justify-content: space-around;
+      opacity: 0;
+      animation: fadeIn 3s ease-in-out forwards;
+    }
+
+    @keyframes fadeIn {
+      0% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+
+    .section {
+      font-size: 1.5rem;
+      cursor: pointer;
+      padding: 10px 20px;
+      border-radius: 10px;
+      background: linear-gradient(45deg, purple, black, red);
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .section:hover {
+      transform: scale(1.2);
+      box-shadow: 0px 0px 20px rgba(255, 0, 0, 0.8);
+    }
+
+    .content {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0);
+      width: 80%;
+      max-width: 600px;
+      background: rgba(0, 0, 0, 0.8);
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 0 20px rgba(255, 0, 0, 0.8);
+      color: white;
+      text-align: center;
+      transition: transform 0.5s ease;
+      opacity: 0;
+      max-height: 70vh;
+      overflow-y: auto;
+    }
+
+    .content.active {
+      transform: translate(-50%, -50%) scale(1);
+      opacity: 1;
+    }
+
+    .images-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      margin-top: 20px;
+    }
+
+    .images-grid div {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .images-grid img {
+      width: 100px;
+      height: 100px;
+      border-radius: 10px;
+      box-shadow: 0px 0px 10px rgba(255, 0, 0, 0.5);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .images-grid img:hover {
+      transform: scale(1.1);
+      box-shadow: 0px 0px 20px rgba(255, 0, 0, 0.8);
+    }
+
+    .image-description {
+      font-size: 1rem;
+    }
+
+    .social-links {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .social-links a {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: white;
+      font-size: 1rem;
+      background: linear-gradient(45deg, purple, black, red);
+      padding: 10px;
+      border-radius: 10px;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.8);
+    }
+
+    .social-links a:hover {
+      transform: scale(1.1);
+      box-shadow: 0px 0px 20px rgba(255, 0, 0, 0.8);
+    }
+
+    iframe {
+      border: none;
+      width: 100%;
+      height: 315px;
+      border-radius: 10px;
+      box-shadow: 0px 0px 20px rgba(255, 0, 0, 0.8);
+    }
+
+    .mod-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 15px;
+    }
+
+    .mod-item img {
+      width: 100px;
+      height: 100px;
+      border-radius: 10px;
+      box-shadow: 0px 0px 10px rgba(255, 0, 0, 0.5);
+    }
+
+    .mod-item p {
+      font-size: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="character-container"><img src="Akio1.png" alt="">
+    <div class="character">
+      <div class="bubble">!Hola soy akio Bienvenido a mi Pagina Oficial, Recuerda pasarte por todos los apartados de la Pagina!</div>
+    </div>
+  </div>
+
+  <div class="sections">
+    <div class="section" onclick="showContent('lore')">Lore</div>
+    <div class="section" onclick="showContent('redes')">Redes</div>
+    <div class="section" onclick="showContent('comunidad')">Comunidad</div>
+    <div class="section" onclick="showContent('mods')">Mods</div>
+    <div class="section" onclick="showContent('fanarts')">Fanarts de la Comunidad</div>
+  </div>
+
+  <div id="lore" class="content">
+    <h2>Lore</h2>
+    <p>¡Hola, soy Akio_YuroVT. Me conocen de diferentes maneras como Perejil, Apio, Emikuko, y más apodos que han surgido a lo largo del tiempo. Me encanta cantar, tocar instrumentos, jugar y crear contenido para entretener a todos.
+
+        Mi personaje es un demonio desterrado del inframundo que, gracias a una brecha entre los mundos, puede entrar al mundo de los humanos. Su misión es proteger a quienes lo necesitan mientras encuentra su camino.!</p>
+  </div>
+
+  <div id="redes" class="content">
+    <h2>Redes</h2>
+    <p>Recuerda seguirme en todas mis redes sociales.</p>
+    <div class="social-links">
+      <div>
+        <iframe
+         src="https://player.twitch.tv/?akio_yurovt&parent=ricardosx11.github.io/Akio"
+          height="500"
+          width="800"
+          allowfullscreen>
+       </iframe>
+     </div>
+    
+      <a href="https://www.youtube.com/@AKIO_VT." target="_blank">
+        <img src="https://via.placeholder.com/30" alt="YouTube">YouTube: Akio_YuroVT
+      </a>
+      <a href="https://x.com/akio_vt" target="_blank">
+        <img src="https://via.placeholder.com/30" alt="Twitter">Twitter
+      </a>
+      <a href="https://www.instagram.com/akiovt_/" target="_blank">
+        <img src="https://via.placeholder.com/30" alt="Instagram">Instagram
+      </a>
+    </div>
+  </div>
+
+  <div id="mods" class="content">
+    <h2>Mods</h2>
+    <p>Descubre los mods más populares y personalizados que he desarrollado o recomiendo. ¡Dale un toque especial a tus juegos favoritos!</p>
+    <div class="images-grid">
+      <div class="mod-item">
+        <img src="Kinka.png" alt="Kinka">
+        <p class="image-description">Patroncita Del Chat, Lider de Mods Esquizo</p>
+      </div>
+      <div class="mod-item">
+        <img src="Hameko.png" alt="Hameko">
+        <p class="image-description">TomiokaSIMP, Loba Solitaria Hija del akio, Peruana</p>
+      </div>
+      <div class="mod-item">
+        <img src="Ricardo.png" alt="Ricardo">
+        <p class="image-description">Mod/Programador, Gymbro, SkibidiSigma, MCProplayer, ExDibjante y actual Playboy      I ꖎ𝙹⍊ᒷ y⚍ᒲ╎ </p>
+      </div>
+      <div class="mod-item">
+        <img src="Azukar.png" alt="Azukar">
+        <p class="image-description">Pareja del Akio, Mod/Manager y la que hace casi todo Jeje</p>
+      </div>
+      <div class="mod-item">
+        <img src="Yumi.jpg" alt="Yumi">
+        <p class="image-description">Helicóptero apache skibidi, pendeja que no sabe dividir y es Artista </p>
+      </div>
+      <div class="mod-item">
+        <img src="Mary.jpg" alt="Mary">
+        <p class="image-description">Mary mejor conocida como la medio gay, fanática de lo sensual, amante del pilin, de los albinos negativos y inspectora de chichis</p>
+      </div>
+    <div class="mod-item">
+      <img src="Albedo.png" alt="Albedo">
+      <p class="image-description">Reina overlord y cuida Con amor a su familia </p>
+    </div>
+  </div>
+
+</div>
+  <div id="comunidad" class="content">
+    <h2>Comunidad</h2>
+    <p>¡Únete a nuestra comunidad y participa en los eventos y conversaciones!</p>
+    <div class="social-links">
+      <a href="https://discord.gg/G9CbeSHJ6R" target="_blank">
+        <img src="https://via.placeholder.com/30" alt="Discord">Únete a nuestro Discord
+      </a>
+    </div>
+    <div class="images-grid">
+      <div>
+        <img src="Fanart1.png" alt="Fanart de la Comunidad 1">
+        <p class="image-description">@Artista1</p>
+      </div>
+      <div>
+        <img src="Fanart2.jpeg" alt="Fanart de la Comunidad 2">
+        <p class="image-description">@Artista2</p>
+      </div>
+      <div>
+        <img src="Fanart3.png" alt="Fanart de la Comunidad 3">
+        <p class="image-description">@Artista3</p>
+      </div>
+      <div>
+        <img src="Fanart4.jpg" alt="Fanart de la Comunidad 4">
+        <p class="image-description">@Artista4</p>
+      </div>
+    </div>
+  </div>
+  </div>
+
+  <div id="fanarts" class="content">
+    <h2>Fanarts de la Comunidad</h2>
+    <p>Explora las creaciones de nuestra comunidad. ¡Gracias por compartir tu arte!</p>
+    <div class="images-grid">
+      <div>
+        <img src="Fanart1.png" alt="Fanart 1">
+        <p class="image-description">@Yokohatsuu</p>
+      </div>
+      <div>
+        <img src="Fanart2.jpeg" alt="Fanart 2">
+        <p class="image-description">@Kibo_yurovt</p>
+      </div>
+      <div>
+        <img src="Fanart5.1.png" alt="Fanart 3">
+        <p class="image-description">@Shinigami</p>
+      </div>
+      <div>
+        <img src="Fanart5.jpg" alt="Fanart 4">
+        <p class="image-description">@Yumi_KojinSMKR</p>
+      </div>
+      <div>
+        <img src="Fanart5.png" alt="Fanart 5">
+        <p class="image-description">@arrixvt</p>
+      </div>
+    </div>
+  </div>
+  <script>
+    function showContent(sectionId) {
+      document.querySelectorAll('.content').forEach(content => {
+        content.classList.remove('active');
+      });
+      document.getElementById(sectionId).classList.add('active');
+    }
+  </script>
+</body>
+</html>
